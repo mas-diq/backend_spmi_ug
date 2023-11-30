@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import * as bcrypt from 'bcrypt';
 import { UserService } from "../user/user.service";
-import { resControllerConst } from "../resControllerConst";
+import { responseConst } from "../responseConst";
 
 @Controller('auth')
 export class AuthController {
@@ -27,7 +27,7 @@ export class AuthController {
     const user = await this.authService.login(req.user);
     if (!user) {
       throw new HttpException(
-        resControllerConst['401'],
+        responseConst['401'],
         HttpStatus.UNAUTHORIZED,
       );
     }
