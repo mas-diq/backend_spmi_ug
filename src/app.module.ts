@@ -15,7 +15,7 @@ ConfigModule.forRoot();
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.CONNECTION_STRING_LOCAL),
+    MongooseModule.forRoot(process.env.CONNECTION_STRING_CLOUD),
     P1PenetapanModule,
     P2PelaksanaanModule,
     P3EvaluasiModule,
