@@ -2,9 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { P_1_penetapanModel } from "./p_1_penetapan.model";
-import { Create_p_1_penetapanDto } from "./dto/create_p_1_penetapan.dto";
-import { Update_p_1_penetapanDto } from "./dto/update_p_1_penetapan.dto";
 import * as AWS from "aws-sdk";
+import { create_p_1_penetapanDto, update_p_1_penetapanDto } from "./p_1_penetapan.dto";
 
 @Injectable()
 export class P1PenetapanService {
@@ -24,7 +23,7 @@ export class P1PenetapanService {
   // Post / createData
   async createData(
     kode_data: string,
-    payload: Create_p_1_penetapanDto
+    payload: create_p_1_penetapanDto
   ) {
     const newData = new this.localModel({
       kode_data,
@@ -40,7 +39,7 @@ export class P1PenetapanService {
   // Patch / editData
   async editData(
     id: string,
-    payload: Update_p_1_penetapanDto
+    payload: update_p_1_penetapanDto
   ) {
     try {
       return await this.localModel.findByIdAndUpdate(id, payload, {

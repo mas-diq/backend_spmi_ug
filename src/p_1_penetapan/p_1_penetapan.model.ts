@@ -1,61 +1,54 @@
 import * as mongoose from "mongoose";
 
-
 export const P_1_penetapanSchema = new mongoose.Schema({
-    kode_data: {
+    standar: {
       type: String,
-      required: true,
-      default: "K11VM"
+      required: true
     },
-    keterangan_data: {
+    indikator: {
       type: String,
-      required: true,
+      required: true
     },
-    tahun_2023: {
+    dokumen: {
       type: String,
       default: "null"
     },
-    dokumen_2023: {
-      type: String,
-      default: "null"
+    capaian_ts_0: {
+      type: Number,
+      default: 0.0
     },
-    tahun_2024: {
-      type: String,
-      default: "null"
+    capaian_ts_1: {
+      type: Number,
+      default: 0.0
     },
-    dokumen_2024: {
-      type: String,
-      default: "null"
+    capaian_ts_2: {
+      type: Number,
+      default: 0.0
     },
-    tahun_2025: {
-      type: String,
-      default: "null"
+    capaian_ts_3: {
+      type: Number,
+      default: 0.0
     },
-    dokumen_2025: {
-      type: String,
-      default: "null"
+    capaian_ts_4: {
+      type: Number,
+      default: 0.0
     },
-    tahun_2026: {
-      type: String,
-      default: "null"
-    },
-    dokumen_2026: {
-      type: String,
-      default: "null"
+    capaian_ts_5: {
+      type: Number,
+      default: 0.0
     }
   },
   { timestamps: true }
 );
 
 export interface P_1_penetapanModel extends mongoose.Document {
-  kode_data: string;
-  keterangan_data: string;
-  tahun_2023: string;
-  dokumen_2023: string;
-  tahun_2024: string;
-  dokumen_2024: string;
-  tahun_2025: string;
-  dokumen_2025: string;
-  tahun_2026: string;
-  dokumen_2026: string;
+  standar: string;
+  indikator: string;
+  dokumen: string;
+  capaian_ts_0: number;
+  capaian_ts_1: number;
+  capaian_ts_2: number;
+  capaian_ts_3: number;
+  capaian_ts_4: number;
+  capaian_ts_5: number;
 }

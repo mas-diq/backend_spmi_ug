@@ -8,7 +8,7 @@ import { P_1_penetapanSchema } from "./p_1_penetapan.model";
   imports: [
     MongooseModule.forFeature([
       {
-        name: 'p_1_penetapan',
+        name: 'P_1_Penetapan',
         schema: P_1_penetapanSchema,
       },
     ]),

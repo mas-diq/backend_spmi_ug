@@ -1,8 +1,12 @@
 import {
   Body,
-  Controller, Delete, Get,
+  Controller,
+  Delete,
+  Get,
   HttpException,
-  HttpStatus, ParseFilePipeBuilder, Patch,
+  HttpStatus,
+  ParseFilePipeBuilder,
+  Patch,
   Post,
   Query,
   UploadedFile,
@@ -11,10 +15,9 @@ import {
 } from "@nestjs/common";
 import { P1PenetapanService } from "./p_1_penetapan.service";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
-import { Create_p_1_penetapanDto } from "./dto/create_p_1_penetapan.dto";
 import { responseConst } from "../responseConst";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { Update_p_1_penetapanDto } from "./dto/update_p_1_penetapan.dto";
+import { create_p_1_penetapanDto, update_p_1_penetapanDto } from "./p_1_penetapan.dto";
 
 @Controller("p_1")
 export class P1PenetapanController {
@@ -28,7 +31,7 @@ export class P1PenetapanController {
   @UseGuards(JwtAuthGuard)
   @Post("/createData")
   async createData(
-    @Body() createDataDto: Create_p_1_penetapanDto
+    @Body() createDataDto: create_p_1_penetapanDto
   ) {
     let kodeData = await this.localService.getKodeData();
     let data = await this.localService.createData(kodeData, createDataDto);
@@ -46,7 +49,7 @@ export class P1PenetapanController {
   @Patch("/editData")
   async editDataForEditor(
     @Body("id") id: string,
-    @Body() updateDataDto: Update_p_1_penetapanDto
+    @Body() updateDataDto: update_p_1_penetapanDto
   ) {
     let data = await this.localService.editData(id, updateDataDto);
     if (data) {
