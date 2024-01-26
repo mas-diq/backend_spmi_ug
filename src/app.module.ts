@@ -10,11 +10,14 @@ import { UserModule } from "./user/user.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
-
-ConfigModule.forRoot();
+import { AwsModule } from "./aws/aws.module";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: [".env", ".env.production"],
+      isGlobal: true
+    }),
     MongooseModule.forRoot(process.env.CONNECTION_STRING_CLOUD),
     P1PenetapanModule,
     P2PelaksanaanModule,
@@ -22,7 +25,8 @@ ConfigModule.forRoot();
     P4PengendalianModule,
     P5PengingkatanModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    AwsModule
   ],
   controllers: [AppController],
   providers: [AppService]

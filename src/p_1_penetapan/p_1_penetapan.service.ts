@@ -2,15 +2,16 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { P_1_penetapanModel } from "./p_1_penetapan.model";
-import * as AWS from "aws-sdk";
 import { create_p_1_penetapanDto, update_p_1_penetapanDto } from "./p_1_penetapan.dto";
+import { AwsService } from "../aws/aws.service";
 
 @Injectable()
 export class P1PenetapanService {
 
   constructor(
     @InjectModel("p_1_penetapan")
-    private readonly localModel: Model<P_1_penetapanModel>
+    private readonly localModel: Model<P_1_penetapanModel>,
+    private readonly awsService: AwsService
   ) {
   }
 
@@ -68,40 +69,13 @@ export class P1PenetapanService {
     }
   }
 
-  // Upload file to AWS S3
-  AWS_S3_BUCKET = `${process.env.AWS_BUCKET_NAME}`;
-  s3 = new AWS.S3({
-    accessKeyId: `${process.env.AWS_ACCESS_KEY_ID}`,
-    secretAccessKey: `${process.env.AWS_SECRET_ACCESS_KEY}`
-  });
-
   async uploadFile(file: any, kode_data: string) {
-    return await this.s3_upload(
+    return await this.awsService.uploadToS3(
       file.buffer,
-      this.AWS_S3_BUCKET,
+      this.awsService.AWS_S3_BUCKET,
       kode_data,
       file.mimetype
     );
-  }
-
-  async s3_upload(file, bucket, name, mimetype) {
-    const params = {
-      Bucket: bucket,
-      Key: String(name),
-      Body: file,
-      ACL: "public-read",
-      ContentType: mimetype,
-      ContentDisposition: "inline",
-      CreateBucketConfiguration: {
-        LocationConstraint: "ap-southeast-1"
-      }
-    };
-
-    try {
-      return await this.s3.upload(params).promise();
-    } catch (e) {
-      throw new Error(`Terjadi kesalahan : ${e}`);
-    }
   }
 
   // Delete / delete

@@ -19,7 +19,7 @@ import { responseConst } from "../responseConst";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { create_p_1_penetapanDto, update_p_1_penetapanDto } from "./p_1_penetapan.dto";
 
-@Controller("p_1")
+@Controller("penetapan")
 export class P1PenetapanController {
 
   constructor(
