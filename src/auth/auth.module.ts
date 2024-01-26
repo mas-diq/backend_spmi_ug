@@ -13,7 +13,7 @@ import { UserModule } from "../user/user.module";
     PassportModule,
     JwtModule.register({
       secret: `${process.env.JWT_SECRET_KEY}`,
-      signOptions: { expiresIn: "60m" }
+      signOptions: { expiresIn: "60000h" }
     })
   ],
   controllers: [AuthController],

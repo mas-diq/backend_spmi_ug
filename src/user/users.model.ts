@@ -14,7 +14,7 @@ export const UserSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    jabatan_akun: {
+    peran_akun: {
       type: String,
       required: true
     }
@@ -27,5 +27,5 @@ export interface User extends mongoose.Document {
   nama_lengkap: string;
   username: string;
   password: string;
-  jabatan_akun: string;
+  peran_akun: string;
 }
